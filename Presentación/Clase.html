@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Datapalooza 2023</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Data Science UC" />
+    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: left, bottom
+background-image: url(media/ds6.jpg)
+background-size: cover
+ 
+.left[&lt;img src="media/logo.png" style="width: 40%" /&gt;]
+
+&lt;br&gt;
+&lt;br&gt;
+
+# **Datapalooza 2023**
+----
+## Web Scraping
+### Pontificia Universidad Católica de Chile
+##### Enero 2023
+&lt;br&gt;
+&lt;br&gt;
+---
+class: left, middle
+
+# Clase 1: Introducción al Web Scraping
+
+----
+
+.pull-left[
+.left[
+
+* [**Recomendaciones iniciales**](#rec)
+
+* [**Introducción**](#intro)
+
+* [**Cuestiones éticas y legales**](#etica)
+
+* [**Introducción a HTML**](#html)
+
+]
+
+] &lt;!--end of left-column--&gt;
+
+.pull-right[
+.left[
+
+* [**rvest**](#rvest)
+
+* [**Actividad**](#actividad1)
+
+* [**RSelenium**](#rselenium)
+
+]
+
+] &lt;!--end of right-column--&gt;
+
+---
+name: rec
+class: inverse, center, middle
+
+# Recomendaciones Iniciales
+
+---
+# Informaciones
+
+
+- Usaremos un script de R compartido para que puedas seguir la ejecución del código. Los scripts se compartirán en la siguiente [carpeta](https://github.com/DiegoHoliwis/Datapalooza_2023).
+
+.center[
+&lt;img src="media/pantallas.png" width="300px"&gt;
+]
+
+---
+name: intro
+class: inverse, center, middle
+
+# Introducción
+
+---
+
+# ¿Cómo funciona una página web?
+
+- Realeza una consulta al servidor web
+- El servidor determina la pagina web que quiere consultar
+- Se envía la información en un formato HTML
+
+
+.center[&lt;img src="media/ConsultasWEB.png"&gt;]
+
+---
+# ¿Qué es Web Scraping?
+
+.center[&lt;img src="media/webscraping.jpg"&gt;]
+
+---
+name: etica
+class: inverse, center, middle
+
+# Cuestiones éticas y legales
+
+---
+
+# Problemas para el sitio WEB
+
+Los propietarios de sitios WEB, justificadamente intentan protegerse de sistemas de web scraping, ya que estos pueden incurrir en problemas para ellos, por ejemplo:
+
+- El robo de información puede otorgar al 'ladrón' ventaja competitiva
+- El sitio web puede fallar, debido a que el web scraping de forma masiva puede generar un ataque DDoS
+- Entre otros
+
+.center[&lt;img src="media/DDoS.png" height="300"&gt;]
+
+---
+
+# Métodos de prevención del web scraping
+
+Algunos sistemas para protegerse de web scraping son:
+
+- **crawler anti-scraping**: Estudia el número y frecuencia en que una misma IP realiza consultas al sitio web, en el momento en que se detecte un sistema extraño esta P será bloqueada.
+- **reCaptcha**: Sistema de detección de robot diseñado por Google.
+- **User-Agent**: es un encabezado del sitio web para identificar como visita al usuario. Se usa información del sistema operativo, versión, tipo CPU, etc.
+
+.center[&lt;img src="media/reCAPTCHA.jpg" height="300"&gt;]
+
+---
+
+# Directrices para un web scraping ético y responsable
+
+Algunas directrices para no ser un web scraper malvado son:
+
+- Preferir las API sobre el Web Scraping siempre que sea posible
+- Leer los terminos y condiciones para saber si la página web esta abierta a realizar web scraping o sobre el uso de los datos web scrapeados
+  - [Amazon](https://www.amazon.com/-/es/gp/help/customer/display.html?nodeId=GLSBYFE9MGKKQXXM)
+  - [Wikipedia](https://es.wikipedia.org/robots.txt)
+- Establecer un tiempo entre consultas adecuado. El tiempo entre ejecución puede estar publicado en los archivos robot.txt de la páginas web, en caso contrario puede esperar al menos 10-15 segundos.
+
+---
+name: html
+class: inverse, center, middle
+
+# Introducción a HTML
+
+---
+
+# ¿Qué es el HTML?
+
+- HTML es el lenguaje estándar para la creación de páginas web
+- Describe la estructura de la página web
+- Le indica al explorador que y como mostrar el contenido
+- Las etiquetas de HTML indican el tipo de contenido, sea: párrafos, títulos, vínculos, etc.
+
+.center[&lt;img src="media/QUE_ES_HTML.jpg" height="350"&gt;]
+
+---
+
+# ¿Cómo funciona HTML?
+
+.center[&lt;img src="media/HTML.jpg"&gt;]
+
+---
+
+# Anatomia de HTML
+
+Las etiquetas son bloques de contenido de la forma: 
+
+`&lt;etiqueta&gt;` contenido `&lt;/etiqueta&gt;`
+
+Estas pueden contener texto u otras etiquetas, creando un sistema de árbol. Además, las etiquetas contienen atributos los cuales agregan atributos a la etiqueta, como lo pueden ser: class, id, name, placeholder, etc.
+
+.center[&lt;img src="media/anatomia_HTML.png"&gt;]
+
+---
+
+# Estructura de un HTML
+
+.center[&lt;img src="media/ESTRUCTURA_HTML.png" height="500"&gt;]
+
+---
+
+# Etiquetas básicas
+
+- `&lt;div&gt;` división de información dentro del contenido.
+- `&lt;a&gt;` para enlaces.
+- `&lt;strong&gt;` para poner el texto en negrita.
+- `&lt;br&gt;` para saltos de lineas.
+- `&lt;h1&gt; ... &lt;h6&gt;` para títulos.
+- `&lt;ol&gt;` para listas ordenadas, `&lt;ul&gt;` para listas desordenadas, `&lt;li&gt;` para elementos dentro de una lista.
+- `&lt;p&gt;` para párrafos.
+- `&lt;span&gt;` para estilos de una parte de texto.
+
+[Referencias](https://makeawebsitehub.com/wp-content/uploads/2015/06/HTML5-Mega-Cheat-Sheet-A4-Print-ready.pdf)
+
+---
+name: rvest
+class: inverse, center, middle
+
+# rvest para el web scraping
+
+---
+# rvest &lt;img src="media/rvest.png" align="right" height="139"/&gt;
+
+[rvest](https://github.com/tidyverse/rvest) es un paquete para realizar Web Scraping a página web de forma estática (sin interacción con esta) inspirado en [`beautiful soup`](https://beautiful-soup-4.readthedocs.io/en/latest/#) y [`RoboBrowser`](https://robobrowser.readthedocs.io/en/latest/readme.html)
+
+Las principales funciones de rvest son:
+
+- **read_html**: Extrae la información HTML de la página consultada.
+- **html_node/html_element**: Extrae la información HTML del primer mach realizado, la función recibe una consulta en formato css o xpath.
+- **html_nodes/html_elements**: Extrae la información HTML de todas las coincidencias con la consulta realizada.
+- **html_attr**: Extrae la información del atributo del node consultado.
+- **html_table**: Extrae tablas de la página web consultada.
+- **html_text2**: Extrae el text del node/página consultada.
+
+Referencias:
+- Selector css: [link](https://www.w3schools.com/cssref/css_selectors.asp)
+- Selector xpath: [link](https://www.w3schools.com/xml/xpath_syntax.asp)
+
+---
+name: actividad
+class: inverse, center, middle
+
+# Actividad 1
+
+---
+# Actividad
+
+Utilizando rvest extraiga la información de de los productos en promoción del día en la página web de [mercado libre](https://www.mercadolibre.cl/). Para ello se realizarán los siguientes pasos:
+
+1. Extraer el número de páginas que tiene mercado libre en su sección de promoción del día.
+2. Obtener los siguientes atributos de los productos de la pagina 1:
+  - Nombre
+  - Precio sin descuento
+  - Precio con descuento
+  - Envío gratis
+  - Envío full
+  - Vendedor
+  - URL
+3. Crear una función que extraiga la información de todos los productos en promoción del día.
+
+---
+name: rselenium
+class: inverse, center, middle
+
+# RSelenium
+
+---
+# RSelenium
+
+Selenium Webdriver es un herramienta que nos permite automatizar pruebas de interfaz de usuario (UI), mediante una conexión realizada por Java. 
+
+Para establecer una conexión es requerido que se tenga instalado:
+  - Navegador web
+  - [Webdriver correspondiente](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/)
+  - [Java](https://www.java.com/es/download/ie_manual.jsp)
+  
+  
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "4:3"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
