@@ -51,3 +51,17 @@ precio_anterior <- pagina %>%
 precio_nuevo <- pagina %>% 
   html_elements(xpath = '//div[@class = "andes-money-amount-combo promotion-item__price has-discount"]/div/span[1]/span[3]') %>% 
   html_text2()
+
+# envio siguiente día
+
+pagina %>% 
+  html_elements(xpath = '//span[@class = "promotion-item__next-day-text"]') %>% 
+  html_text2()
+
+pagina %>% 
+  html_element(xpath = '//ol[@class = "items_container"]/li[10]//span[@class = "promotion-item__next-day-text"]') %>% 
+  html_text2() %>% 
+  ifelse(is.na(.),'Sin envio gratis',.)
+
+
+
