@@ -64,4 +64,26 @@ pagina %>%
   ifelse(is.na(.),'Sin envio gratis',.)
 
 
+sprintf('hola %s como estas',1124)
+sprintf('//ol[@class = "items_container"]/li[%s]//span[@class = "promotion-item__next-day-text"]',3)
+
+
+envio_gratis <- 1:length(nombre) %>% 
+  map_chr(.f = function(x){
+    pagina %>% 
+      html_element(xpath = sprintf('//ol[@class = "items_container"]/li[%s]//span[@class = "promotion-item__next-day-text"]',x)) %>% 
+      html_text2() %>% 
+      ifelse(is.na(.),'Sin envio gratis',.)    
+  })
+  
+#url
+
+url <- pagina %>% 
+  html_elements(xpath = '//a[@class = "promotion-item__link-container"]') %>% 
+  html_attr('href')
+
+# Consolidado en una función
+
+
+
 
