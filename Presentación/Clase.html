@@ -4,7 +4,7 @@
     <title>Datapalooza 2023</title>
     <meta charset="utf-8" />
     <meta name="author" content="Data Science UC" />
-    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
   </head>
@@ -24,7 +24,6 @@ background-size: cover
 ----
 ## Web Scraping
 ### Pontificia Universidad Católica de Chile
-##### Enero 2023
 &lt;br&gt;
 &lt;br&gt;
 ---
@@ -74,8 +73,12 @@ class: inverse, center, middle
 
 - Usaremos un script de R compartido para que puedas seguir la ejecución del código. Los scripts se compartirán en la siguiente [carpeta](https://github.com/DiegoHoliwis/Datapalooza_2023).
 
+- Pueden seguir al instagram oficial del diplomado UC en @DataScienceUC y etiquetar en Twitter con el hashtag #Datapalooza
+
+- Pausa programada a las 11:30hrs de 15 minutos.
+
 .center[
-&lt;img src="media/pantallas.png" width="300px"&gt;
+&lt;img src="media/qr.png" width="300px"&gt;
 ]
 
 ---
@@ -93,8 +96,10 @@ class: inverse, center, middle
 - Se envía la información en un formato HTML
 
 
-.center[&lt;img src="media/ConsultasWEB.png"&gt;]
-
+&lt;!-- .center[&lt;img src="media/ConsultasWEB.png"&gt;] --&gt;
+.center[
+&lt;img src="media/ConsultasWEB.png" width="800px"&gt;
+]
 ---
 # ¿Qué es Web Scraping?
 
@@ -259,9 +264,19 @@ Para establecer una conexión es requerido que se tenga instalado:
   - Navegador web
   - [Webdriver correspondiente](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/)
   - [Java](https://www.java.com/es/download/ie_manual.jsp)
-  
-  
 
+---
+
+## Comandos útiles:
+
+- `navigate()` inicia la página web seleccionada.
+- `findElement()` busca un elemento xpath o css.
+- `$getElementText()` extrae el texto del elemento seleccionado.
+- `$getElementAttribute()` extrae un atributo del elemento seleccionado.
+- `$clickElement()` realiza clic en el elemento seleccionado.
+- `$selectTag()` retorna las opciones del elemento seleccionado, útil para revisar las opciones de un tag select
+- `$sendKeysToElement(list('x'))` escribe en el elemento la palabra `x`, se utiliza en elementos input.
+- `$getElementAttribute('innerHTML')[[1]]` extrae la información HTML del nodo hijo del elemento seleccionado, útil para combinar con `rvest` al realizar la extracción.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

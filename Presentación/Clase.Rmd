@@ -31,7 +31,6 @@ background-size: cover
 ----
 ## `r rmarkdown::metadata$subtitle`
 ### `r rmarkdown::metadata$institute`
-##### `r rmarkdown::metadata$date`
 <br>
 <br>
 ---
@@ -81,8 +80,12 @@ class: inverse, center, middle
 
 - Usaremos un script de R compartido para que puedas seguir la ejecución del código. Los scripts se compartirán en la siguiente [carpeta](https://github.com/DiegoHoliwis/Datapalooza_2023).
 
+- Pueden seguir al instagram oficial del diplomado UC en @DataScienceUC y etiquetar en Twitter con el hashtag #Datapalooza
+
+- Pausa programada a las 11:30hrs de 15 minutos.
+
 .center[
-<img src="media/pantallas.png" width="300px">
+<img src="media/qr.png" width="300px">
 ]
 
 ---
@@ -100,8 +103,10 @@ class: inverse, center, middle
 - Se envía la información en un formato HTML
 
 
-.center[<img src="media/ConsultasWEB.png">]
-
+<!-- .center[<img src="media/ConsultasWEB.png">] -->
+.center[
+<img src="media/ConsultasWEB.png" width="800px">
+]
 ---
 # ¿Qué es Web Scraping?
 
@@ -266,6 +271,16 @@ Para establecer una conexión es requerido que se tenga instalado:
   - Navegador web
   - [Webdriver correspondiente](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/)
   - [Java](https://www.java.com/es/download/ie_manual.jsp)
-  
-  
 
+---
+
+## Comandos útiles:
+
+- `navigate()` inicia la página web seleccionada.
+- `findElement()` busca un elemento xpath o css.
+- `$getElementText()` extrae el texto del elemento seleccionado.
+- `$getElementAttribute()` extrae un atributo del elemento seleccionado.
+- `$clickElement()` realiza clic en el elemento seleccionado.
+- `$selectTag()` retorna las opciones del elemento seleccionado, útil para revisar las opciones de un tag select
+- `$sendKeysToElement(list('x'))` escribe en el elemento la palabra `x`, se utiliza en elementos input.
+- `$getElementAttribute('innerHTML')[[1]]` extrae la información HTML del nodo hijo del elemento seleccionado, útil para combinar con `rvest` al realizar la extracción.
