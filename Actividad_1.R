@@ -37,3 +37,17 @@ nombre <- pagina %>%
   html_elements(xpath = '//p[@class = "promotion-item__title"]') %>% 
   html_text2()
 
+## Precio sin descuento
+# intento 1 fallido
+# pagina %>% 
+#   html_element(xpath = '//span[@class = "andes-money-amount__fraction"]') %>% 
+#   html_text2()
+
+precio_anterior <- pagina %>% 
+  html_elements(xpath = '//div[@class = "andes-money-amount-combo promotion-item__price has-discount"]/s/span[3]') %>% 
+  html_text2()
+
+# precio nuevo
+precio_nuevo <- pagina %>% 
+  html_elements(xpath = '//div[@class = "andes-money-amount-combo promotion-item__price has-discount"]/div/span[1]/span[3]') %>% 
+  html_text2()
