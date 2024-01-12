@@ -2,6 +2,7 @@
 library(tidyverse)
 library(rvest)
 library(RSelenium)
+library(stringr)
 
 # library(tidyverse)
 # library(RSelenium)
@@ -24,6 +25,7 @@ remote_driver$navigate("https://www.santander.cl/cotizador-web/")
 
 MARCA    = 'JEEP'
 MODELO   = 'RENEGADE'
+AÑO      = '2023'
 RUT      = '24312997-4'
 NOMBRE   = 'Diego Muñoz'
 FechaN   = '10/01/1997'
@@ -68,7 +70,7 @@ remote_driver$findElement(using = 'xpath',
 #                           value = '//input[@id = "ano"]')$sendKeysToElement(list('2022'))
 
 remote_driver$findElement(using = 'id',
-                          value = 'ano')$sendKeysToElement(list('2022'))
+                          value = 'ano')$sendKeysToElement(list(AÑO))
 
 # Uso
 remote_driver$findElement(using = 'xpath',
@@ -98,7 +100,7 @@ for(i in RUT %>% str_split("") %>% unlist()){
 for (i in NOMBRE %>% str_split("") %>% unlist()) {
   remote_driver$findElement(using = 'id',
                             value = 'nombre')$sendKeysToElement(list(i))
-  Sys.sleep(runif(1,0.1,0.3))
+  Sys.sleep(runif(1,0.1,0.1))
 }
 
 # Fecha de nacimiento
